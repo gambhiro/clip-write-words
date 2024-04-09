@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import time
 import platform
 import pyautogui as pya
 from pyautogui import Point
@@ -10,7 +11,12 @@ IS_MAC = (platform.system() == 'Darwin')
 
 def clip_write_words(write_text: str, mouse_start_pos: Point):
     pya.moveTo(mouse_start_pos)
+    pya.click()
+    time.sleep(0.1)
+
     words = [i.strip() for i in write_text.strip().split(" ")]
+
+    x, y = mouse_start_pos
 
     for w in words:
         pya.press('esc')
@@ -27,7 +33,10 @@ def clip_write_words(write_text: str, mouse_start_pos: Point):
         with pya.hold(modkey):
             pya.press('v')
 
-        pya.moveRel(50, 10)
+        x += 50
+        y += 20
+        pya.moveTo(x, y)
+        time.sleep(0.1)
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:
@@ -38,6 +47,12 @@ if __name__ == "__main__":
         print("0 or 1 arguments are expected.")
         sys.exit(2)
 
-    mouse_pos = pya.position()
+    print(f"Text: {write_text}")
+    wait_secs = 5
+    while wait_secs > 0:
+        print(f"In {wait_secs}...")
+        time.sleep(1)
+        wait_secs -= 1
 
+    mouse_pos = pya.position()
     clip_write_words(write_text, mouse_pos)
