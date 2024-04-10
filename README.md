@@ -27,7 +27,7 @@ For each word:
 - it copies it to the clipboard
 - activates the "Text" tool with key `t`
 - pastes the word with `Ctrl/Cmd + V`
-- moves to mouse position for the next word
+- moves the mouse position to insert the next word
 
 The script adds the words on tldraw, then you have to arrage them.
 
