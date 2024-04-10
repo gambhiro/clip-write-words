@@ -9,7 +9,7 @@ import pyperclip
 
 IS_MAC = (platform.system() == 'Darwin')
 
-def clip_write_words(write_text: str, mouse_start_pos: Point):
+def write_words(write_text: str, mouse_start_pos: Point):
     pya.moveTo(mouse_start_pos)
     pya.click()
     time.sleep(0.1)
@@ -55,4 +55,4 @@ if __name__ == "__main__":
         wait_secs -= 1
 
     mouse_pos = pya.position()
-    clip_write_words(write_text, mouse_pos)
+    write_words(write_text, mouse_pos)
